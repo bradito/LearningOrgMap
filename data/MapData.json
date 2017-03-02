@@ -1,0 +1,448 @@
+{"name": "Learning Org Assets"
+	,"children": [
+{"name":"Decision Support"
+,"children":[
+ {"name":"EHR Based"
+ ,"children":[
+  {"name":"Orders"
+  ,"children":[
+   {"name":"Order Panels"
+   }
+   ,{"name":"Order Questions"
+   }
+   ,{"name":"Order/SmartSets"
+   ,"children":[
+    {"name":"User Favorites"
+    }
+    ,{"name":"User Overrides"
+    }
+   ]
+   }
+   ,{"name":"Order Preference Lists"
+   }
+   ,{"name":"Order Transmittal"
+   }
+   ,{"name":"Order Validation Extensions"
+   }
+   ,{"name":"Duplicate"
+   }
+  ]
+  }
+  ,{"name":"Preference Lists"
+  ,"children":[
+   {"name":"Diagnosis/Problems"
+   }
+   ,{"name":"Charge"
+   }
+   ,{"name":"Procedure Pref Cards"
+   }
+  ]
+  }
+  ,{"name":"Alert Rules"
+  ,"children":[
+   {"name":"Medication Warnings"
+   }
+   ,{"name":"Custom BPAs"
+   }
+   ,{"name":"Banners"
+   }
+   ,{"name":"FYI Notes/Advisories"
+   }
+   ,{"name":"User Action Alerts"
+   }
+  ]
+  }
+  ,{"name":"Health Maint Topics"
+  }
+  ,{"name":"Operational Reports"
+  ,"children":[
+   {"name":"Synopsis"
+   }
+   ,{"name":"Accordion Reports"
+   }
+   ,{"name":"Categorized Reports"
+   }
+   ,{"name":"Index and Summary Reports"
+   }
+   ,{"name":"Patient Lists"
+   }
+   ,{"name":"Patient Header"
+   }
+   ,{"name":"Relevant Reults"
+   }
+   ,{"name":"After Visit Summaries"
+   ,"children":[
+    {"name":"AVS Validation Extenstions"
+    }
+   ]
+   }
+  ]
+  }
+  ,{"name":"Scoring Systems"
+  ,"children":[
+   {"name":"Automatic Abstracted"
+   }
+   ,{"name":"Manually Abstracted"
+   }
+  ]
+  }
+  ,{"name":"Inbasket"
+  ,"children":[
+   {"name":"Pools"
+   }
+   ,{"name":"Routing Rules"
+   }
+   ,{"name":"Flags"
+   }
+   ,{"name":"Chart Deficiency"
+   }
+  ]
+  }
+  ,{"name":"Workflow Tools"
+  ,"children":[
+   {"name":"Conditional Navigators/Sections"
+   }
+   ,{"name":"Workflow Engine Rules"
+   }
+   ,{"name":"Close Encounter Validation"
+   }
+  ]
+  }
+  ,{"name":"Groupers"
+  ,"children":[
+   {"name":"Concept Based"
+   }
+   ,{"name":"Generic Med Based"
+   }
+   ,{"name":"ICD Based"
+   }
+   ,{"name":"Manual Build"
+   }
+  ]
+  }
+  ,{"name":"Category Lists"
+  }
+ ]
+ }
+ ,{"name":"Non EHR Based"
+ ,"children":[
+  {"name":"See Reference Sources"
+  }
+ ]
+ }
+]
+}
+,{"name":"Data Streams"
+,"children":[
+ {"name":"Ad Hoc"
+ ,"children":[
+  {"name":"Exploratory Analytics"
+  }
+  ,{"name":"Data Warehouses"
+  }
+  ,{"name":"Custom Queries"
+  }
+ ]
+ }
+ ,{"name":"Recurring"
+ ,"children":[
+  {"name":"Dashboards"
+  }
+  ,{"name":"Detailed Reports"
+  }
+  ,{"name":"Defined Metrics"
+  ,"children":[
+   {"name":"Benchmarks"
+   }
+  ]
+  }
+  ,{"name":"Case Reports"
+  ,"children":[
+   {"name":"Safety Call"
+   }
+   ,{"name":"Safety Newsletters"
+   }
+  ]
+  }
+ ]
+ }
+]
+}
+,{"name":"Reference Sources"
+,"children":[
+ {"name":"Internal"
+ ,"children":[
+  {"name":"MyPartner"
+  }
+  ,{"name":"Compliance360 Policy"
+  }
+  ,{"name":"SharePoint"
+  }
+  ,{"name":"WorkSpaces"
+  }
+  ,{"name":"Service Now KB"
+  }
+ ]
+ }
+ ,{"name":"External"
+ ,"children":[
+  {"name":"Org Purchased"
+  ,"children":[
+   {"name":"UpToDate"
+   }
+   ,{"name":"Dynamed"
+   }
+   ,{"name":"ClinicalKey"
+   }
+   ,{"name":"Micromedex"
+   }
+   ,{"name":"Facts and Comparisons"
+   }
+  ]
+  }
+  ,{"name":"Freely available"
+  ,"children":[
+   {"name":"FOAM"
+   ,"children":[
+    {"name":"Blogs"
+    }
+    ,{"name":"Podcasts"
+    }
+    ,{"name":"Search tools"
+    }
+    ,{"name":"Twitter"
+    }
+   ]
+   }
+   ,{"name":"PubMed"
+   }
+   ,{"name":"PubMedCentral"
+   }
+  ]
+  }
+ ]
+ }
+]
+}
+,{"name":"Tracking"
+,"children":[
+ {"name":"Assets"
+ ,"children":[
+  {"name":"Workstations"
+  }
+  ,{"name":"Learning Org (THIS Document!)"
+  }
+ ]
+ }
+ ,{"name":"Problems"
+ ,"children":[
+  {"name":"MIDAS"
+  }
+  ,{"name":"Compliance"
+  }
+  ,{"name":"Service Now Incidents"
+  }
+ ]
+ }
+ ,{"name":"People"
+ ,"children":[
+  {"name":"Epic Provider File"
+  }
+  ,{"name":"HR System"
+  }
+  ,{"name":"Cactus"
+  }
+ ]
+ }
+]
+}
+,{"name":"People"
+,"children":[
+ {"name":"Education is 1˚ Role"
+ ,"children":[
+  {"name":"OHPE"
+  }
+  ,{"name":"Nurse Educators"
+  }
+ ]
+ }
+ ,{"name":"Education is 2˚ Role"
+ ,"children":[
+  {"name":"Faculty and Supervising staff"
+  }
+ ]
+ }
+ ,{"name":"Knowledge Discovery"
+ ,"children":[
+  {"name":"Researchers"
+  }
+ ]
+ }
+]
+}
+,{"name":"Communications"
+,"children":[
+ {"name":"Synchronous"
+ ,"children":[
+  {"name":"Recurring Meetings"
+  ,"children":[
+   {"name":"Operational Meetings"
+   }
+   ,{"name":"Organized 'CME' conferences"
+   }
+  ]
+  }
+  ,{"name":"Lync"
+  }
+  ,{"name":"Telephone"
+  }
+  ,{"name":"Vocera"
+  }
+ ]
+ }
+ ,{"name":"Asynchronous"
+ ,"children":[
+  {"name":"Informal"
+  ,"children":[
+   {"name":"Discussions up/down Org Chart"
+   }
+   ,{"name":"Discussion Forums"
+   }
+   ,{"name":"Plain old Email"
+   }
+   ,{"name":"Plain old Voicemail"
+   }
+  ]
+  }
+  ,{"name":"Formal"
+  ,"children":[
+   {"name":"Recurring Push"
+   ,"children":[
+    {"name":"Newsletters"
+    ,"children":[
+     {"name":"Epigram"
+     }
+     ,{"name":"Did You Know"
+     }
+     ,{"name":"Medical Staff newsletters"
+     }
+     ,{"name":"Bathroom Briefs"
+     }
+    ]
+    }
+    ,{"name":"Electronic Signage"
+    }
+    ,{"name":"Paper/Poster Signage"
+    }
+    ,{"name":"Handwritten Signage"
+    }
+    ,{"name":"Annual Plan 'Placemat' Construct"
+    }
+    ,{"name":"Annual Required Education"
+    ,"children":[
+     {"name":"Bloodborne pathogen"
+     }
+     ,{"name":"Code of Conduct"
+     }
+     ,{"name":"Stroke education"
+     }
+    ]
+    }
+   ]
+   }
+   ,{"name":"Ad Hoc Push"
+   ,"children":[
+    {"name":"Outlook Distribution Lists"
+    }
+    ,{"name":"Recurring Meeting Invites"
+    }
+    ,{"name":"Vocera Broadcast Groups"
+    }
+    ,{"name":"Digital Pager/Text"
+    ,"children":[
+     {"name":"Pager Groups"
+     }
+     ,{"name":"Text Message Groups"
+     ,"children":[
+      {"name":"Red Alert"
+      }
+     ]
+     }
+    ]
+    }
+    ,{"name":"Specific MyLearning"
+    }
+   ]
+   }
+   ,{"name":"Pull"
+   ,"children":[
+    {"name":"External Face Website"
+    }
+    ,{"name":"Intranet/Knowledge Base"
+    }
+   ]
+   }
+  ]
+  }
+ ]
+ }
+]
+}
+,{"name":"Relationships"
+,"children":[
+ {"name":"Affiliations"
+ }
+ ,{"name":"Mentorships"
+ }
+]
+}
+,{"name":"Budgets"
+,"children":[
+ {"name":"Internal"
+ ,"children":[
+  {"name":"Individual"
+  ,"children":[
+   {"name":"Continuing Ed Funds"
+   }
+   ,{"name":"Professional Organizations"
+   }
+  ]
+  }
+  ,{"name":"Operational"
+  ,"children":[
+   {"name":"Explicit Reimbursement"
+   }
+   ,{"name":"Implied Reimbursement"
+   }
+  ]
+  }
+  ,{"name":"Foundation"
+  ,"children":[
+   {"name":"Knowledge Discovery"
+   ,"children":[
+    {"name":"Research Grants"
+    }
+    ,{"name":"RED Grants"
+    }
+    ,{"name":"Individual Resident Grants"
+    }
+   ]
+   }
+  ]
+  }
+ ]
+ }
+ ,{"name":"External"
+ ,"children":[
+  {"name":"Government"
+  }
+  ,{"name":"Non-Gov Non Profit"
+  }
+  ,{"name":"Industry"
+  }
+ ]
+ }
+]
+}
+]
+}
