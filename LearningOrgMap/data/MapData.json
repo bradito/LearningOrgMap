@@ -1,448 +1,392 @@
-{"name": "Learning Org Assets"
-	,"children": [
-{"name":"Decision Support"
-,"children":[
- {"name":"EHR Based"
- ,"children":[
-  {"name":"Orders"
-  ,"children":[
-   {"name":"Order Panels"
-   }
-   ,{"name":"Order Questions"
-   }
-   ,{"name":"Order/SmartSets"
-   ,"children":[
-    {"name":"User Favorites"
-    }
-    ,{"name":"User Overrides"
-    }
-   ]
-   }
-   ,{"name":"Order Preference Lists"
-   }
-   ,{"name":"Order Transmittal"
-   }
-   ,{"name":"Order Validation Extensions"
-   }
-   ,{"name":"Duplicate"
-   }
-  ]
-  }
-  ,{"name":"Preference Lists"
-  ,"children":[
-   {"name":"Diagnosis/Problems"
-   }
-   ,{"name":"Charge"
-   }
-   ,{"name":"Procedure Pref Cards"
-   }
-  ]
-  }
-  ,{"name":"Alert Rules"
-  ,"children":[
-   {"name":"Medication Warnings"
-   }
-   ,{"name":"Custom BPAs"
-   }
-   ,{"name":"Banners"
-   }
-   ,{"name":"FYI Notes/Advisories"
-   }
-   ,{"name":"User Action Alerts"
-   }
-  ]
-  }
-  ,{"name":"Health Maint Topics"
-  }
-  ,{"name":"Operational Reports"
-  ,"children":[
-   {"name":"Synopsis"
-   }
-   ,{"name":"Accordion Reports"
-   }
-   ,{"name":"Categorized Reports"
-   }
-   ,{"name":"Index and Summary Reports"
-   }
-   ,{"name":"Patient Lists"
-   }
-   ,{"name":"Patient Header"
-   }
-   ,{"name":"Relevant Reults"
-   }
-   ,{"name":"After Visit Summaries"
-   ,"children":[
-    {"name":"AVS Validation Extenstions"
-    }
-   ]
-   }
-  ]
-  }
-  ,{"name":"Scoring Systems"
-  ,"children":[
-   {"name":"Automatic Abstracted"
-   }
-   ,{"name":"Manually Abstracted"
-   }
-  ]
-  }
-  ,{"name":"Inbasket"
-  ,"children":[
-   {"name":"Pools"
-   }
-   ,{"name":"Routing Rules"
-   }
-   ,{"name":"Flags"
-   }
-   ,{"name":"Chart Deficiency"
-   }
-  ]
-  }
-  ,{"name":"Workflow Tools"
-  ,"children":[
-   {"name":"Conditional Navigators/Sections"
-   }
-   ,{"name":"Workflow Engine Rules"
-   }
-   ,{"name":"Close Encounter Validation"
-   }
-  ]
-  }
-  ,{"name":"Groupers"
-  ,"children":[
-   {"name":"Concept Based"
-   }
-   ,{"name":"Generic Med Based"
-   }
-   ,{"name":"ICD Based"
-   }
-   ,{"name":"Manual Build"
-   }
-  ]
-  }
-  ,{"name":"Category Lists"
-  }
- ]
- }
- ,{"name":"Non EHR Based"
- ,"children":[
-  {"name":"See Reference Sources"
-  }
- ]
- }
-]
-}
-,{"name":"Data Streams"
-,"children":[
- {"name":"Ad Hoc"
- ,"children":[
-  {"name":"Exploratory Analytics"
-  }
-  ,{"name":"Data Warehouses"
-  }
-  ,{"name":"Custom Queries"
-  }
- ]
- }
- ,{"name":"Recurring"
- ,"children":[
-  {"name":"Dashboards"
-  }
-  ,{"name":"Detailed Reports"
-  }
-  ,{"name":"Defined Metrics"
-  ,"children":[
-   {"name":"Benchmarks"
-   }
-  ]
-  }
-  ,{"name":"Case Reports"
-  ,"children":[
-   {"name":"Safety Call"
-   }
-   ,{"name":"Safety Newsletters"
-   }
-  ]
-  }
- ]
- }
-]
-}
-,{"name":"Reference Sources"
-,"children":[
- {"name":"Internal"
- ,"children":[
-  {"name":"MyPartner"
-  }
-  ,{"name":"Compliance360 Policy"
-  }
-  ,{"name":"SharePoint"
-  }
-  ,{"name":"WorkSpaces"
-  }
-  ,{"name":"Service Now KB"
-  }
- ]
- }
- ,{"name":"External"
- ,"children":[
-  {"name":"Org Purchased"
-  ,"children":[
-   {"name":"UpToDate"
-   }
-   ,{"name":"Dynamed"
-   }
-   ,{"name":"ClinicalKey"
-   }
-   ,{"name":"Micromedex"
-   }
-   ,{"name":"Facts and Comparisons"
-   }
-  ]
-  }
-  ,{"name":"Freely available"
-  ,"children":[
-   {"name":"FOAM"
-   ,"children":[
-    {"name":"Blogs"
-    }
-    ,{"name":"Podcasts"
-    }
-    ,{"name":"Search tools"
-    }
-    ,{"name":"Twitter"
-    }
-   ]
-   }
-   ,{"name":"PubMed"
-   }
-   ,{"name":"PubMedCentral"
-   }
-  ]
-  }
- ]
- }
-]
-}
-,{"name":"Tracking"
-,"children":[
- {"name":"Assets"
- ,"children":[
-  {"name":"Workstations"
-  }
-  ,{"name":"Learning Org (THIS Document!)"
-  }
- ]
- }
- ,{"name":"Problems"
- ,"children":[
-  {"name":"MIDAS"
-  }
-  ,{"name":"Compliance"
-  }
-  ,{"name":"Service Now Incidents"
-  }
- ]
- }
- ,{"name":"People"
- ,"children":[
-  {"name":"Epic Provider File"
-  }
-  ,{"name":"HR System"
-  }
-  ,{"name":"Cactus"
-  }
- ]
- }
-]
-}
-,{"name":"People"
-,"children":[
- {"name":"Education is 1˚ Role"
- ,"children":[
-  {"name":"OHPE"
-  }
-  ,{"name":"Nurse Educators"
-  }
- ]
- }
- ,{"name":"Education is 2˚ Role"
- ,"children":[
-  {"name":"Faculty and Supervising staff"
-  }
- ]
- }
- ,{"name":"Knowledge Discovery"
- ,"children":[
-  {"name":"Researchers"
-  }
- ]
- }
-]
-}
-,{"name":"Communications"
-,"children":[
- {"name":"Synchronous"
- ,"children":[
-  {"name":"Recurring Meetings"
-  ,"children":[
-   {"name":"Operational Meetings"
-   }
-   ,{"name":"Organized 'CME' conferences"
-   }
-  ]
-  }
-  ,{"name":"Lync"
-  }
-  ,{"name":"Telephone"
-  }
-  ,{"name":"Vocera"
-  }
- ]
- }
- ,{"name":"Asynchronous"
- ,"children":[
-  {"name":"Informal"
-  ,"children":[
-   {"name":"Discussions up/down Org Chart"
-   }
-   ,{"name":"Discussion Forums"
-   }
-   ,{"name":"Plain old Email"
-   }
-   ,{"name":"Plain old Voicemail"
-   }
-  ]
-  }
-  ,{"name":"Formal"
-  ,"children":[
-   {"name":"Recurring Push"
-   ,"children":[
-    {"name":"Newsletters"
-    ,"children":[
-     {"name":"Epigram"
-     }
-     ,{"name":"Did You Know"
-     }
-     ,{"name":"Medical Staff newsletters"
-     }
-     ,{"name":"Bathroom Briefs"
-     }
+{
+    "name": "MAT",
+    "children": [
+        {
+            "name": "TRI",
+            "children": [
+                {
+                    "name": "Right Triangles and an Introduction to Trigonometry",
+                    "children": [
+                        {
+                            "name": "The Pythagorean Theorem"
+                        },
+                        {
+                            "name": "Special Right Triangles"
+                        },
+                        {
+                            "name": "Basic Trigonometric Functions"
+                        },
+                        {
+                            "name": "Solving Right Triangles"
+                        },
+                        {
+                            "name": "Measuring Rotation"
+                        },
+                        {
+                            "name": "Applying Trig Functions to Angles of Rotation"
+                        },
+                        {
+                            "name": "Trigonometric Functions of Any Angle"
+                        }
+                    ]
+                },
+                {
+                    "name": "Graphing Trigonometric Functions - 2nd edition",
+                    "children": [
+                        {
+                            "name": "Relating Trigonometric Functions"
+                        },
+                        {
+                            "name": "Radian Measure"
+                        },
+                        {
+                            "name": "Applications of Radian Measure"
+                        },
+                        {
+                            "name": "Circular Functions of Real Numbers"
+                        },
+                        {
+                            "name": "Translating Sine and Cosine Functions"
+                        },
+                        {
+                            "name": "Amplitude, Period and Frequency"
+                        },
+                        {
+                            "name": "General Sinusoidal Graphs"
+                        }
+                    ]
+                },
+                {
+                    "name": "Trigonometric Identities and Equations - 2nd edition",
+                    "children": [
+                        {
+                            "name": "Graphing Tangent, Cotangent, Secant, and Cosecant"
+                        },
+                        {
+                            "name": "Fundamental Identities"
+                        },
+                        {
+                            "name": "Proving Identities"
+                        },
+                        {
+                            "name": "Solving Trigonometric Equations"
+                        },
+                        {
+                            "name": "Sum and Difference Identities"
+                        },
+                        {
+                            "name": "Double Angle Identities"
+                        },
+                        {
+                            "name": "Half-Angle Identities"
+                        }
+                    ]
+                },
+                {
+                    "name": "Inverse Trigonometric Functions - 2nd edition",
+                    "children": [
+                        {
+                            "name": "Products, Sums, Linear Combinations, and Applications"
+                        },
+                        {
+                            "name": "Basic Inverse Trigonometric Functions"
+                        },
+                        {
+                            "name": "Graphing Inverse Trigonometric Functions"
+                        },
+                        {
+                            "name": "Inverse Trigonometric Properties"
+                        }
+                    ]
+                },
+                {
+                    "name": "Triangles and Vectors",
+                    "children": [
+                        {
+                            "name": "Applications & Models"
+                        },
+                        {
+                            "name": "The Law of Cosines"
+                        },
+                        {
+                            "name": "Area of a Triangle"
+                        },
+                        {
+                            "name": "The Law of Sines"
+                        },
+                        {
+                            "name": "The Ambiguous Case"
+                        },
+                        {
+                            "name": "General Solutions of Triangles"
+                        },
+                        {
+                            "name": "Vectors"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "ALG",
+            "children": [
+                {
+                    "name": "Equations and Functions",
+                    "children": [
+                        {
+                            "name": "Variable Expressions"
+                        },
+                        {
+                            "name": "Order of Operations"
+                        },
+                        {
+                            "name": "Patterns and Equations"
+                        },
+                        {
+                            "name": "Equations and Inequalities"
+                        },
+                        {
+                            "name": "Functions as Rules and Tables"
+                        },
+                        {
+                            "name": "Functions as Graphs"
+                        },
+                        {
+                            "name": "Problem-Solving Plan"
+                        }
+                    ]
+                },
+                {
+                    "name": "Real Numbers",
+                    "children": [
+                        {
+                            "name": "Problem-Solving Strategies: Make a Table and Look for a Pattern"
+                        },
+                        {
+                            "name": "Integers and Rational Numbers"
+                        },
+                        {
+                            "name": "Adding and Subtracting Rational Numbers"
+                        },
+                        {
+                            "name": "Multiplying and Dividing Rational Numbers"
+                        },
+                        {
+                            "name": "The Distributive Property"
+                        },
+                        {
+                            "name": "Square Roots and Real Numbers"
+                        }
+                    ]
+                },
+                {
+                    "name": "Equations of Lines",
+                    "children": [
+                        {
+                            "name": "Problem-Solving Strategies: Guess and Check, Work Backward"
+                        },
+                        {
+                            "name": "One-Step Equations"
+                        },
+                        {
+                            "name": "Two-Step Equations"
+                        },
+                        {
+                            "name": "Multi-Step Equations"
+                        },
+                        {
+                            "name": "Equations with Variables on Both Sides"
+                        },
+                        {
+                            "name": "Ratios and Proportions"
+                        }
+                    ]
+                },
+                {
+                    "name": "Graphs of Equations and Functions",
+                    "children": [
+                        {
+                            "name": "Percent Problems"
+                        },
+                        {
+                            "name": "The Coordinate Plane"
+                        },
+                        {
+                            "name": "Graphs of Linear Equations"
+                        },
+                        {
+                            "name": "Graphing Using Intercepts"
+                        },
+                        {
+                            "name": "Slope and Rate of Change"
+                        },
+                        {
+                            "name": "Graphs Using Slope-Intercept Form"
+                        },
+                        {
+                            "name": "Direct Variation Models"
+                        },
+                        {
+                            "name": "Linear Function Graphs"
+                        }
+                    ]
+                },
+                {
+                    "name": "Writing Linear Equations",
+                    "children": [
+                        {
+                            "name": "Problem-Solving Strategies - Graphs"
+                        },
+                        {
+                            "name": "Forms of Linear Equations"
+                        },
+                        {
+                            "name": "Equations of Parallel and Perpendicular Lines"
+                        },
+                        {
+                            "name": "Fitting a Line to Data"
+                        }
+                    ]
+                },
+                {
+                    "name": "Linear Inequalities",
+                    "children": [
+                        {
+                            "name": "Predicting with Linear Models"
+                        },
+                        {
+                            "name": "Solving Inequalities"
+                        },
+                        {
+                            "name": "Using Inequalities"
+                        },
+                        {
+                            "name": "Compound Inequalities"
+                        },
+                        {
+                            "name": "Absolute Value Equations and Inequalities"
+                        }
+                    ]
+                },
+                {
+                    "name": "Solving Systems of Equations and Inequalities",
+                    "children": [
+                        {
+                            "name": "Linear Inequalities in Two Variables"
+                        },
+                        {
+                            "name": "Linear Systems by Graphing"
+                        },
+                        {
+                            "name": "Solving Linear Systems by Substitution"
+                        },
+                        {
+                            "name": "Solving Linear Systems by Elimination"
+                        },
+                        {
+                            "name": "Special Types of Linear Systems"
+                        }
+                    ]
+                },
+                {
+                    "name": "Exponential Functions",
+                    "children": [
+                        {
+                            "name": "Systems of Linear Inequalities"
+                        },
+                        {
+                            "name": "Exponent Properties Involving Products"
+                        },
+                        {
+                            "name": "Exponent Properties Involving Quotients"
+                        },
+                        {
+                            "name": "Zero, Negative, and Fractional Exponents"
+                        },
+                        {
+                            "name": "Scientific Notation"
+                        },
+                        {
+                            "name": "Geometric Sequences"
+                        },
+                        {
+                            "name": "Exponential Functions"
+                        }
+                    ]
+                },
+                {
+                    "name": "Polynomials",
+                    "children": [
+                        {
+                            "name": "Applications of Exponential Functions"
+                        },
+                        {
+                            "name": "Addition and Subtraction of Polynomials"
+                        },
+                        {
+                            "name": "Multiplication of Polynomials"
+                        },
+                        {
+                            "name": "Special Products of Polynomials"
+                        },
+                        {
+                            "name": "Polynomial Equations in Factored Form"
+                        },
+                        {
+                            "name": "Factoring Quadratic Expressions"
+                        },
+                        {
+                            "name": "Factoring Special Products"
+                        }
+                    ]
+                },
+                {
+                    "name": "Quadratic Equations and Quadratic Functions",
+                    "children": [
+                        {
+                            "name": "Factoring Polynomials Completely"
+                        },
+                        {
+                            "name": "Graphs of Quadratic Functions"
+                        },
+                        {
+                            "name": "Quadratic Equations by Graphing"
+                        },
+                        {
+                            "name": "Quadratic Equations by Square Roots"
+                        },
+                        {
+                            "name": "Solving Quadratic Equations by Completing the Square"
+                        },
+                        {
+                            "name": "Solving Quadratic Equations by the Quadratic Formula"
+                        },
+                        {
+                            "name": "The Discriminant"
+                        }
+                    ]
+                },
+                {
+                    "name": "Algebra and Geometry Connections",
+                    "children": [
+                        {
+                            "name": "Linear, Exponential and Quadratic Models"
+                        },
+                        {
+                            "name": "Graphs of Square Root Functions"
+                        },
+                        {
+                            "name": "Radical Expressions"
+                        },
+                        {
+                            "name": "Radical Equations"
+                        },
+                        {
+                            "name": "The Pythagorean Theorem and Its Converse"
+                        }
+                    ]
+                }
+            ]
+        }
     ]
-    }
-    ,{"name":"Electronic Signage"
-    }
-    ,{"name":"Paper/Poster Signage"
-    }
-    ,{"name":"Handwritten Signage"
-    }
-    ,{"name":"Annual Plan 'Placemat' Construct"
-    }
-    ,{"name":"Annual Required Education"
-    ,"children":[
-     {"name":"Bloodborne pathogen"
-     }
-     ,{"name":"Code of Conduct"
-     }
-     ,{"name":"Stroke education"
-     }
-    ]
-    }
-   ]
-   }
-   ,{"name":"Ad Hoc Push"
-   ,"children":[
-    {"name":"Outlook Distribution Lists"
-    }
-    ,{"name":"Recurring Meeting Invites"
-    }
-    ,{"name":"Vocera Broadcast Groups"
-    }
-    ,{"name":"Digital Pager/Text"
-    ,"children":[
-     {"name":"Pager Groups"
-     }
-     ,{"name":"Text Message Groups"
-     ,"children":[
-      {"name":"Red Alert"
-      }
-     ]
-     }
-    ]
-    }
-    ,{"name":"Specific MyLearning"
-    }
-   ]
-   }
-   ,{"name":"Pull"
-   ,"children":[
-    {"name":"External Face Website"
-    }
-    ,{"name":"Intranet/Knowledge Base"
-    }
-   ]
-   }
-  ]
-  }
- ]
- }
-]
-}
-,{"name":"Relationships"
-,"children":[
- {"name":"Affiliations"
- }
- ,{"name":"Mentorships"
- }
-]
-}
-,{"name":"Budgets"
-,"children":[
- {"name":"Internal"
- ,"children":[
-  {"name":"Individual"
-  ,"children":[
-   {"name":"Continuing Ed Funds"
-   }
-   ,{"name":"Professional Organizations"
-   }
-  ]
-  }
-  ,{"name":"Operational"
-  ,"children":[
-   {"name":"Explicit Reimbursement"
-   }
-   ,{"name":"Implied Reimbursement"
-   }
-  ]
-  }
-  ,{"name":"Foundation"
-  ,"children":[
-   {"name":"Knowledge Discovery"
-   ,"children":[
-    {"name":"Research Grants"
-    }
-    ,{"name":"RED Grants"
-    }
-    ,{"name":"Individual Resident Grants"
-    }
-   ]
-   }
-  ]
-  }
- ]
- }
- ,{"name":"External"
- ,"children":[
-  {"name":"Government"
-  }
-  ,{"name":"Non-Gov Non Profit"
-  }
-  ,{"name":"Industry"
-  }
- ]
- }
-]
-}
-]
 }
