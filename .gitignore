@@ -1,7 +1,7 @@
 ### /Users/monster/.gitignore-boilerplates/Python.gitignore
 
 *.py[cod]
-*config.py
+instance
 
 # C extensions
 *.so
