@@ -2,9 +2,9 @@ from setuptools import setup
 
 setup(
     name='LearningOrgMap',
+    version='1.0',
     packages=['LearningOrgMap'],
     include_package_data=True,
-    install_requires=[
-        'flask',
-    ],
+    zip_safe=False,
+    install_requires=['Flask']
 )
