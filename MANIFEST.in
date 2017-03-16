@@ -1,7 +1,5 @@
-#MANIFEST.in
-
-recursive-include LearningOrgMap/templates
-recursive-include LearningOrgMap/css
-recursive-include LearningOrgMap/data
-recursive-include LearningOrgMap/js
-recursive-include LearningOrgMap/utils
+recursive-include LearningOrgMap/templates *.*
+recursive-include LearningOrgMap/css *.*
+recursive-include LearningOrgMap/data *.*
+recursive-include LearningOrgMap/js *.*
+recursive-include LearningOrgMap/utils *.*
