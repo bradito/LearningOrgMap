@@ -3,12 +3,19 @@
 <style>
 
 .node {
-  cursor: pointer;
 }
 
 .node circle {
+  cursor: pointer;
   fill: #fff;
   stroke: steelblue;
+  stroke-width: 1.5px;
+}
+
+.node rect {
+  cursor: pointer;
+  fill: white;
+  stroke: rgba(255, 191, 0, 0.18);
   stroke-width: 1.5px;
 }
 
@@ -144,8 +151,8 @@ function expandAll(d) {
 }
 
 //===============================================
-// Toggle children on click.
-function toggle(d) {
+// toggleChildren children on click.
+function toggleChildren(d) {
   if (d.children) {
     d._children = d.children;
     d.children = null;
@@ -264,15 +271,23 @@ function update(source) {
   // Enter any new nodes at the parent's previous position.
   var nodeEnter = node.enter().append("g")
       .attr("class", "node")
-      .attr("transform", function(d) { return "translate(" + source.y0 + "," + source.x0 + ")"; })
-      .on("click", toggle);
+      .attr("transform", function(d) { return "translate(" + source.y0 + "," + source.x0 + ")"; });
+      // .on("click", toggleChildren);
 
   nodeEnter.append("circle")
       .attr("r", 1e-6)
-      .style("fill", function(d) { return d._children ? "lightsteelblue" : "#fff"; });
+      .style("fill", function(d) { return d._children ? "lightsteelblue" : "#fff"; })
+      .on("click", toggleChildren);
+
+  nodeEnter.append("rect")
+      .attr("height", 10)
+      .attr("width", 10)
+      .attr("x", 10)
+      .attr("y", -5)
+      // .style("fill", function(d) { return d._children ? "#ffbf00" : "#fff"; });
 
   nodeEnter.append("text")
-      .attr("x", function(d) { return d.children || d._children ? -10 : 10; })
+      .attr("x", function(d) { return d.children || d._children ? -10 : 25; })
       .attr("dy", ".35em")
       .attr("text-anchor", function(d) { return d.children || d._children ? "end" : "start"; })
       .text(function(d) { return d.name; })
@@ -286,17 +301,26 @@ function update(source) {
   nodeUpdate.select("circle")
       .attr("r", 4.5)
       .style("fill", function(d) {
-            if (d.class === "found") {
-                return "#ff4136"; //red
-            } else if (d._children) {
+            if (d._children) {
                 return "lightsteelblue";
+            } else {
+                return "#fff";
+            }
+        });
+
+
+  nodeUpdate.select("rect")
+      // .attr("r", 4.5)
+      .style("fill", function(d) {
+            if (d.class === "found") {
+                return "#ffbf00"; // orange color if selected
             } else {
                 return "#fff";
             }
         })
         .style("stroke", function(d) {
             if (d.class === "found") {
-                return "#ff4136"; //red
+                return "#ffbf00";
             }
         });
 
@@ -333,7 +357,7 @@ function update(source) {
       .attr("d", diagonal)
       .style("stroke", function(d) {
             if (d.target.class === "found") {
-                return "#ff4136";
+                return "#ffbf00";
             }
         });
 
