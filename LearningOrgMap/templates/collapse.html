@@ -1,117 +1,56 @@
 <!DOCTYPE html>
 <meta charset="utf-8">
-<style>
 
-.node {
-}
-
-.node circle {
-  cursor: pointer;
-  fill: #fff;
-  stroke: steelblue;
-  stroke-width: 1.5px;
-}
-
-.node rect {
-  cursor: pointer;
-  fill: white;
-  stroke: rgba(255, 191, 0, 0.18);
-  stroke-width: 1.5px;
-}
-
-.node text {
-  font: 10px sans-serif;
-}
-
-.link {
-  fill: none;
-  stroke: #ccc;
-  stroke-width: 1.5px;
-}
-
-.found {
-  fill: #ff4136;
-  stroke: #ff4136;
-}
-
-.search {
-  font: 10px sans-serif;
-  width: 30%;
-}
-
-.map {
-  float: left;
-}
-
-.footer {
-  font: 9px sans-serif;
-  float: left;
-}
-
-ul.select2-results {
- max-height: 100px;
-}
-
-.select2-container,
-.select2-drop,
-.select2-search,
-.select2-search input {
-  font: 10px sans-serif;
-}
-
-#block_container {
-  display: inline;
-}
-
-#instructions {
-  font: 10px sans-serif;
-}
-
-</style>
 <body>
 <script src="http://cdnjs.cloudflare.com/ajax/libs/d3/3.4.13/d3.min.js"></script>
 <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 <link rel="stylesheet" type="text/css" href="http://cdnjs.cloudflare.com/ajax/libs/select2/3.5.2/select2.min.css"></link>
+<link href="/css/interactive_tree.css" rel="stylesheet" type="text/css" />
 <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/select2/3.5.2/select2.min.js"></script>
 
 <div id="block_container">
    <div id="searchName"></div>
+   <div id="instructions">The above drop down list will find any node in the tree, searched alphabetically.</div>
 </div>
 
 <script>
 
+
 //===============================================
+// collects data in flat form. ID as the identifier, name as the display text
 function select2DataCollectName(d) {
     if (d.children)
         d.children.forEach(select2DataCollectName);
     else if (d._children)
         d._children.forEach(select2DataCollectName);
-    select2Data.push(d.name);
+    select2Data.push({"id": d.id, "name": d.name});
 }
-
+  
 //===============================================
+//searches the trea with the current selections for a match
+
 function searchTree(d) {
     if (d.children)
-        d.children.forEach(searchTree);
+        d.children.forEach(searchTree); 
     else if (d._children)
-        d._children.forEach(searchTree);
-    var searchFieldValue = eval(searchField);
-    if (searchFieldValue && searchFieldValue.match(searchText)) {
+        d._children.forEach(searchTree); 
+
+    if (searchId.indexOf(d.id)>=0) {
             // Walk parent chain
             var ancestors = [];
             var parent = d;
             while (typeof(parent) !== "undefined") {
                 ancestors.push(parent);
-		//console.log(parent);
-                parent.class = "found";
+		            console.log(parent);
+                parent.class = "found";  // sets the matched node to found.
                 parent = parent.parent;
             }
-	    //console.log(ancestors);
     }
 }
 
 //===============================================
-function clearAll(d) {
+//clears "found" from all nodes.
+function clearAll(d) { 
     d.class = "";
     if (d.children)
         d.children.forEach(clearAll);
@@ -120,6 +59,7 @@ function clearAll(d) {
 }
 
 //===============================================
+//clears single node and its children
 function collapse(d) {
     if (d.children) {
         d._children = d.children;
@@ -129,18 +69,20 @@ function collapse(d) {
 }
 
 //===============================================
+//recursively finds children and sets d.children to d._children to collapse them if the class isn't "found"
 function collapseAllNotFound(d) {
     if (d.children) {
     	if (d.class !== "found") {
         	d._children = d.children;
         	d._children.forEach(collapseAllNotFound);
         	d.children = null;
-	} else 
+	    } else 
         	d.children.forEach(collapseAllNotFound);
     }
 }
 
 //===============================================
+//expands all children
 function expandAll(d) {
     if (d._children) {
         d.children = d._children;
@@ -153,108 +95,104 @@ function expandAll(d) {
 //===============================================
 // toggleChildren children on click.
 function toggleChildren(d) {
-  if (d.children) {
-    d._children = d.children;
-    d.children = null;
-  } else {
-    d.children = d._children;
-    d._children = null;
-  }
-  clearAll(root);
-  update(d);
-  $("#searchName").select2("val", "");
+    if (d.children) {
+        d._children = d.children;
+        d.children = null;
+    } else {
+        d.children = d._children;
+        d._children = null;
+    }
+    update(d);
 }
 
 //===============================================
+//clear out all the search options, remove found
+    //$("#searchName").select2("val", ""); // change to manual clearning of search values
+
+
+//===============================================
+// called when the select2 box has chosen another selection
 $("#searchName").on("select2-selecting", function(e) {
     clearAll(root);
     expandAll(root);
     update(root);
 
-    searchField = "d.name";
-    searchText = e.object.text;
-    searchTree(root);
+    searchField = "d.id"; 
+    searchId = $("#searchName").select2("val").map(Number)
+    searchId.push(e.object.id);
+    searchTree(root); 
+
     root.children.forEach(collapseAllNotFound);
     update(root);
 })
 
 //===============================================
+//builds the SVG object
 var margin = {top: 20, right: 120, bottom: 20, left: 120},
-    width = 960 - margin.right - margin.left,
+    width = 1400 - margin.right - margin.left,
     height = 800 - margin.top - margin.bottom;
     
 var i = 0,
     duration = 750,
-    root;
+    root; // root object to hold all the data
 
-var tree = d3.layout.tree()
+var tree = d3.layout.tree() 
+    // specifies a tree layout with the above height and width and stores as an object tree
+    // a d3.tree is a subclass of a d3.hierarchy which has made features of nodes (The item itself) and links(the parent and leaves)
+    // this is specfic to d3 version 3
     .size([height, width]);
 
-var diagonal = d3.svg.diagonal()
+var diagonal = d3.svg.diagonal()   // creates a function diagnonal that determines the distance from one object
     .projection(function(d) { return [d.y, d.x]; });
 
-var svg = d3.select("body").append("svg")
+var svg = d3.select("body").append("svg") /// builds the svg based on the above info
     .attr("width", width + margin.right + margin.left)
     .attr("height", height + margin.top + margin.bottom)
     .attr("class", "map")
-  .append("g")
+  .append("g") //creates the base node I think.  <g> is effectively a group container for other elements.
     .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
-d3.json("/data/{{ map }}", function(error, flare) {
-  root = flare;
-  root.x0 = height / 2;
-  root.y0 = 0;
 
-  select2Data = [];
-  select2DataCollectName(root);
-  select2DataObject = [];
-  select2Data.sort(function(a, b) {
-            if (a > b) return 1; // sort
-            if (a < b) return -1;
-            return 0;
-        })
-        .filter(function(item, i, ar) {
-            return ar.indexOf(item) === i;
-        }) // remove duplicate items
-        .filter(function(item, i, ar) {
-            select2DataObject.push({
-                "id": i,
-                "text": item
-            });
-        });
-    select2Data.sort(function(a, b) {
-            if (a > b) return 1; // sort
-            if (a < b) return -1;
-            return 0;
-        })
-        .filter(function(item, i, ar) {
-            return ar.indexOf(item) === i;
-        }) // remove duplicate items
-        .filter(function(item, i, ar) {
-            select2DataObject.push({
-                "id": i,
-                "text": item
-            });
-        });
-  $("#searchName").select2({
-        data: select2DataObject,
-        containerCssClass: "search"
+
+
+  // gets a request with a parsed JSON file and parses it with the included callback function
+d3.json("/data/{{ map }}", function(error, flare) { 
+    root = flare;
+    root.x0 = height / 2; // puts in the middle of the screen rather than the top by dividing by half.
+    root.y0 = 0; // puts root on the left most
+    update(root);
+
+    // create select2Data to hold the pick list, populated by the following function
+    select2Data = []; 
+    select2DataCollectName(root); 
+
+  // a quick utility function to return the name of an item for select2 
+  function format(item) {
+    return item.name;
+  };
+
+  // builds the select2 object on the screen
+  $("#searchName").select2({ 
+        data: {results: select2Data, text: 'name'},
+        formatSelection: format,
+        formatResult: format,
+        containerCssClass: "search",
+        multiple: "multiple"
   });
-
-  function collapse(d) {
-    if (d.children) {
-      d._children = d.children;
-      d._children.forEach(collapse);
-      d.children = null;
-    }
-  }
+// removed redundant collapse function from here.
 
   root.children.forEach(collapse);
-  update(root);
-});
+}); // end of /d3.json call
+
+
+// future use planned to display whole map in text form for copy paste
+var longList = d3.select("body").append("div")
+    .append("ul")
+      .attr("class","longList");
 
 d3.select(self.frameElement).style("height", "800px");
 
+// does the lifting of binding data to svg
 function update(source) {
 
   // Compute the new tree layout.
@@ -272,7 +210,6 @@ function update(source) {
   var nodeEnter = node.enter().append("g")
       .attr("class", "node")
       .attr("transform", function(d) { return "translate(" + source.y0 + "," + source.x0 + ")"; });
-      // .on("click", toggleChildren);
 
   nodeEnter.append("circle")
       .attr("r", 1e-6)
@@ -280,8 +217,8 @@ function update(source) {
       .on("click", toggleChildren);
 
   nodeEnter.append("rect")
-      .attr("height", 10)
-      .attr("width", 10)
+      .attr("height", 1e-6)
+      .attr("width", 1e-6)
       .attr("x", 10)
       .attr("y", -5)
       // .style("fill", function(d) { return d._children ? "#ffbf00" : "#fff"; });
@@ -293,7 +230,6 @@ function update(source) {
       .text(function(d) { return d.name; })
       .style("fill-opacity", 1e-6);
 
-  // Transition nodes to their new position.
   var nodeUpdate = node.transition()
       .duration(duration)
       .attr("transform", function(d) { return "translate(" + d.y + "," + d.x + ")"; });
@@ -308,9 +244,9 @@ function update(source) {
             }
         });
 
-
   nodeUpdate.select("rect")
-      // .attr("r", 4.5)
+      .attr("height", 10)
+      .attr("width", 10)
       .style("fill", function(d) {
             if (d.class === "found") {
                 return "#ffbf00"; // orange color if selected
@@ -318,7 +254,7 @@ function update(source) {
                 return "#fff";
             }
         })
-        .style("stroke", function(d) {
+      .style("stroke", function(d) {
             if (d.class === "found") {
                 return "#ffbf00";
             }
@@ -327,7 +263,6 @@ function update(source) {
   nodeUpdate.select("text")
       .style("fill-opacity", 1);
 
-  // Transition exiting nodes to the parent's new position.
   var nodeExit = node.exit().transition()
       .duration(duration)
       .attr("transform", function(d) { return "translate(" + source.y + "," + source.x + ")"; })
@@ -335,6 +270,10 @@ function update(source) {
 
   nodeExit.select("circle")
       .attr("r", 1e-6);
+
+  nodeExit.select("rect")
+      .attr("height", 1e-6)
+      .attr("width", 1e-6);
 
   nodeExit.select("text")
       .style("fill-opacity", 1e-6);
@@ -381,6 +320,5 @@ function update(source) {
 <div id="footer" class="footer">
   Much credit to <a href="https://d3js.org/">d3</a>. AND this collapsing tree is basically a fork of work by pbrockmann - <a href="https://gist.github.com/PBrockmann/0f22818096428b12ea23">CollapsibleTree Search</a> and once I learn to fork on git I'll do that...
 </div>
-œ<div id="instructions">The above drop down list will find any node in the tree, searched alphabetically.</div>
 
 </body>

@@ -15,3 +15,73 @@ path.link {
   stroke: #f1f1f1	;
   stroke-width: 1.5px;
 }
+
+
+.node {
+}
+
+.node circle {
+  cursor: pointer;
+  fill: #fff;
+  stroke: steelblue;
+  stroke-width: 1.5px;
+}
+
+.node rect {
+  cursor: pointer;
+  fill: white;
+  stroke: rgba(255, 191, 0, 0.18);
+  stroke-width: 1.5px;
+}
+
+.node text {
+  font: 10px sans-serif;
+}
+
+.link {
+  fill: none;
+  stroke: #ccc;
+  stroke-width: 1.5px;
+}
+
+.found {
+  fill: #ff4136;
+  stroke: #ff4136;
+}
+
+.search {
+  font: 10px sans-serif;
+  width: 30%;
+}
+
+.map {
+  float: left;
+}
+
+.footer {
+  font: 9px sans-serif;
+  float: left;
+}
+
+ul.select2-results {
+ max-height: 300px;
+}
+
+.select2-container,
+.select2-drop,
+.select2-search,
+.select2-search input {
+  font: 10px sans-serif;
+}
+
+ul.longList {
+  font: 8px sans-serif;
+}
+
+#block_container {
+  display: inline;
+}
+
+#instructions {
+  font: 10px sans-serif;
+}
