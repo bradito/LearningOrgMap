@@ -10,6 +10,9 @@
 
 <div id="block_container">
    <div id="searchName"></div>
+   <button class="button" onclick="clearSearch()">Clear All</button>
+   <button class="button" onclick="expandAllButton()">Expand All</button>
+
    <div id="instructions">The above drop down list will find any node in the tree, searched alphabetically.</div>
 </div>
 
@@ -107,9 +110,18 @@ function toggleChildren(d) {
 
 //===============================================
 //clear out all the search options, remove found
-    //$("#searchName").select2("val", ""); // change to manual clearning of search values
+function clearSearch() { 
+   $("#searchName").select2("val", ""); // change to manual clearning of search values
+   clearAll(root);
+   collapse(root);
+   update(root);
+}
 
-
+function expandAllButton() {
+  expandAll(root);
+  update(root);
+}
+  
 //===============================================
 // called when the select2 box has chosen another selection
 $("#searchName").on("select2-selecting", function(e) {
