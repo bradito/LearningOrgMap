@@ -25,7 +25,7 @@ except:
 	local_map = None
 	pass
 
-@app.route("/")
+@app.route("/oldway")
 def hello():
 	now = datetime.datetime.now()
 	timestring = now.strftime("%Y-%m-%d %H:%M")
@@ -40,7 +40,7 @@ def hello():
 	
 	return render_template('main.html', **templateData)
 
-@app.route("/collapse")
+@app.route("/")
 def collapsing():
 	templateData = {
 		'title':'Learning Organization Map, collapsing',

@@ -28,7 +28,20 @@ function select2DataCollectName(d) {
         d._children.forEach(select2DataCollectName);
     select2Data.push({"id": d.id, "name": d.name});
 }
-  
+
+//===============================================
+//has found child?  this was a fail.
+function noFoundChildren(d){
+  var noFoundChildren = true;
+  console.log("starting search for found kiddos");
+  if (d.children && !noFoundChildren)
+      d.children.forEach(function(c) { if (c.class === "found") noFoundChildren = false; }) ;
+
+  else if (d._children && !noFoundChildren)
+      d._children.forEach(function(c) { if (c.class === "found") noFoundChildren = false; });
+  console.log("nofound: " + noFoundChildren);
+  return noFoundChildren;
+}
 //===============================================
 //searches the trea with the current selections for a match
 
@@ -44,10 +57,13 @@ function searchTree(d) {
             var parent = d;
             while (typeof(parent) !== "undefined") {
                 ancestors.push(parent);
-		            console.log(parent);
                 parent.class = "found";  // sets the matched node to found.
                 parent = parent.parent;
             }
+    //}  else {
+    //  if(noFoundChildren(d)) {
+      //  d.class = "";
+     // }
     }
 }
 
@@ -109,19 +125,29 @@ function toggleChildren(d) {
 }
 
 //===============================================
-//clear out all the search options, remove found
-function clearSearch() { 
-   $("#searchName").select2("val", ""); // change to manual clearning of search values
-   clearAll(root);
-   collapse(root);
-   update(root);
+// toggle whether current item is selected or not
+
+function toggleFound(d) {
+    clearAll(root);
+    expandAll(root);
+    update(root);
+    
+    searchId = $("#searchName").select2("val").map(Number);
+    var index = searchId.indexOf(d.id);
+    if (index  > -1)  {
+      d.class === "";
+      searchId.splice(index,1);
+
+    } else {
+      searchId.push(d.id);
+
+    }
+    $("#searchName").select2("val", searchId.map(String)); // change to manual clearning of search values
+    searchTree(root);
+    root.children.forEach(collapseAllNotFound);
+    update(root);
 }
 
-function expandAllButton() {
-  expandAll(root);
-  update(root);
-}
-  
 //===============================================
 // called when the select2 box has chosen another selection
 $("#searchName").on("select2-selecting", function(e) {
@@ -138,6 +164,36 @@ $("#searchName").on("select2-selecting", function(e) {
     update(root);
 })
 
+//===============================================
+// called when the select2 box has removed a selection
+$("#searchName").on("select2-removing", function(e) {
+    clearAll(root);
+    expandAll(root);
+    update(root);
+
+    searchField = "d.id"; 
+    searchId = $("#searchName").select2("val").map(Number)
+    searchId.splice(searchId.indexOf(Number(e.val)),1);
+    searchTree(root); 
+
+    root.children.forEach(collapseAllNotFound);
+    update(root);
+})
+
+//===============================================
+//clear out all the search options, remove found
+function clearSearch() { 
+   $("#searchName").select2("val", ""); // change to manual clearning of search values
+   clearAll(root);
+   expandAll(root);
+   update(root);
+}
+
+function expandAllButton() {
+  expandAll(root);
+  update(root);
+}
+  
 //===============================================
 //builds the SVG object
 var margin = {top: 20, right: 120, bottom: 20, left: 120},
@@ -233,6 +289,7 @@ function update(source) {
       .attr("width", 1e-6)
       .attr("x", 10)
       .attr("y", -5)
+      .on("click", toggleFound);
       // .style("fill", function(d) { return d._children ? "#ffbf00" : "#fff"; });
 
   nodeEnter.append("text")
