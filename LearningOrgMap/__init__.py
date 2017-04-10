@@ -17,10 +17,10 @@ import sys
 app = Flask(__name__,static_url_path='',instance_relative_config=True)
 app.config.from_object('LearningOrgMap.config.DevelopmentConfig')
 app.config.from_pyfile('LearningOrgMap.cfg', silent=True)
+local_map = None
 
 try:
 	local_map = app.open_instance_resource('map.json')
-	print("opened map.json")
 except:
 	local_map = None
 	pass

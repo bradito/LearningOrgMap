@@ -45,6 +45,12 @@ path.link {
   stroke-width: 1.5px;
 }
 
+.node g#plusSign {
+  cursor: pointer;
+  stroke: #b6e6db;
+  stroke-width: 2px;
+}
+
 .node text {
   font: 10px sans-serif;
 }
@@ -95,4 +101,84 @@ ul.longList {
 
 #instructions {
   font: 10px sans-serif;
+}
+
+
+/* The Modal (background) */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content/Box */
+.modal-content {
+    background-color: #fefefe;
+    margin: 15% auto; /* 15% from the top and centered */
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%; /* Could be more or less, depending on screen size */
+    font-size: 14px;
+    font-family: sans-serif;
+}
+
+/* The Add Child box text field */
+
+.textentry {
+  min-height: 26px;
+  width:80%;
+  height:auto!important;
+  margin: 0;
+  padding:0 5px 0 0;
+  position: relative;
+  border: 1px solid #aaa;
+  cursor: text;
+  overflow:hidden;
+  background-color: #fff;
+  background-image: linear-gradient(to_bottom, #eee 1%, %fff 15%);
+}
+
+#pickedNodeName {
+  background-color:#8DFF89;
+  font-style:italic;
+}
+
+/* The Accept Button */
+.accept {
+    color: #8DFF89;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    padding: 10px;
+}
+
+.accept:hover,
+.accept:focus {
+    color: #22FF1C;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+
+/* The Cancel Button */
+.cancel {
+    color: #A86869;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    padding: 10px;
+}
+
+.cancel:hover,
+.cancel:focus {
+    color: #A80003;
+    text-decoration: none;
+    cursor: pointer;
 }

@@ -19,6 +19,7 @@
 <script>
 
 
+
 //===============================================
 // collects data in flat form. ID as the identifier, name as the display text
 function select2DataCollectName(d) {
@@ -60,10 +61,6 @@ function searchTree(d) {
                 parent.class = "found";  // sets the matched node to found.
                 parent = parent.parent;
             }
-    //}  else {
-    //  if(noFoundChildren(d)) {
-      //  d.class = "";
-     // }
     }
 }
 
@@ -126,7 +123,7 @@ function toggleChildren(d) {
 
 //===============================================
 // toggle whether current item is selected or not
-
+// Improvement:  probably better to use the data() property of select2 to send an array object rather than string of text
 function toggleFound(d) {
     clearAll(root);
     expandAll(root);
@@ -193,7 +190,66 @@ function expandAllButton() {
   expandAll(root);
   update(root);
 }
+
+//================================================
+// a function to add a child node.
+
+var newParent;
+
+var theTestKids = function(node) {
+  return [{"name": "kid one",}];
+}
+
+function addChildWindow(d) {
+  modal.style.display = "block";
+  $("#pickedNodeName").text(d.name);
+  $("#childName").focus();
+  newParent = d; // adds this to new parent to hold in case we cancel
+}
+
+function addChild(d, newName) {
+  modal.style.display = "none";
+
+  var newKid =  {"name": newName, "children": []};
+
+  if(d._children) {
+    d._children.push(newKid);
+  } else if (d.children) {
+    d.children.push(newKid);
+
+  } else {
+    d._children = [newKid];
+  }
+
+  expandAll(root);
+  update(root);
+  buildSelect2();
   
+}
+
+//================================================
+// build and rebuild select2 based on new or added items.
+function buildSelect2() {  
+  select2Data = []; 
+  select2DataCollectName(root); 
+
+  // a quick utility function to return the name of an item for select2 
+  function format(item) {
+    return item.name;
+  };
+
+  // builds the select2 object on the screen
+  // PROBLEM -something here is displaying block when it is called a second time in inline css.
+  // tried overriding the css with containerCss but not working.  Maybe browser?
+  $("#searchName").select2({ 
+        data: {results: select2Data, text: 'name'},
+        formatSelection: format,
+        formatResult: format,
+        containerCssClass: "search",
+        multiple: "multiple"
+  });
+}
+
 //===============================================
 //builds the SVG object
 var margin = {top: 20, right: 120, bottom: 20, left: 120},
@@ -206,7 +262,8 @@ var i = 0,
 
 var tree = d3.layout.tree() 
     // specifies a tree layout with the above height and width and stores as an object tree
-    // a d3.tree is a subclass of a d3.hierarchy which has made features of nodes (The item itself) and links(the parent and leaves)
+    // a d3.tree is a subclass of a d3.hierarchy which has made features of nodes
+    // nodes are: (The item itself) and links(the parent and leaves)
     // this is specfic to d3 version 3
     .size([height, width]);
 
@@ -220,9 +277,6 @@ var svg = d3.select("body").append("svg") /// builds the svg based on the above 
   .append("g") //creates the base node I think.  <g> is effectively a group container for other elements.
     .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
-
-
-
   // gets a request with a parsed JSON file and parses it with the included callback function
 d3.json("/data/{{ map }}", function(error, flare) { 
     root = flare;
@@ -231,25 +285,9 @@ d3.json("/data/{{ map }}", function(error, flare) {
     update(root);
 
     // create select2Data to hold the pick list, populated by the following function
-    select2Data = []; 
-    select2DataCollectName(root); 
+    buildSelect2();
 
-  // a quick utility function to return the name of an item for select2 
-  function format(item) {
-    return item.name;
-  };
-
-  // builds the select2 object on the screen
-  $("#searchName").select2({ 
-        data: {results: select2Data, text: 'name'},
-        formatSelection: format,
-        formatResult: format,
-        containerCssClass: "search",
-        multiple: "multiple"
-  });
-// removed redundant collapse function from here.
-
-  root.children.forEach(collapse);
+    root.children.forEach(collapse); 
 }); // end of /d3.json call
 
 
@@ -290,10 +328,28 @@ function update(source) {
       .attr("x", 10)
       .attr("y", -5)
       .on("click", toggleFound);
-      // .style("fill", function(d) { return d._children ? "#ffbf00" : "#fff"; });
+
+var plusSign = nodeEnter.append("g")
+      .attr("id","plusSign")
+      .on("click", addChildWindow)
+      .attr("transform", "translate(23,-5)")
+    
+  plusSign.append("line")
+      .attr("id", "vert")
+      .attr("x1", 5)
+      .attr("y1", 0)
+      .attr("x2", 5)
+      .attr("y2", 10)
+
+  plusSign.append("line")
+      .attr("id", "horiz")
+      .attr("x1", 0)
+      .attr("y1", 5)  
+      .attr("x2", 10)
+      .attr("y2", 5)
 
   nodeEnter.append("text")
-      .attr("x", function(d) { return d.children || d._children ? -10 : 25; })
+      .attr("x", function(d) { return d.children || d._children ? -10 : 35; })
       .attr("dy", ".35em")
       .attr("text-anchor", function(d) { return d.children || d._children ? "end" : "start"; })
       .text(function(d) { return d.name; })
@@ -329,6 +385,18 @@ function update(source) {
             }
         });
 
+    nodeUpdate.select("g#vert")
+      .attr("x1", 5)
+      .attr("y1", 0)
+      .attr("x2", 5)
+      .attr("y2", 10)
+
+    nodeUpdate.select("g#horiz")
+      .attr("x1", 0)
+      .attr("y1", 5)  
+      .attr("x2", 10)
+      .attr("y2", 5)
+
   nodeUpdate.select("text")
       .style("fill-opacity", 1);
 
@@ -346,6 +414,18 @@ function update(source) {
 
   nodeExit.select("text")
       .style("fill-opacity", 1e-6);
+
+  nodeExit.select("g#vert")
+        .attr("x1", 5)
+        .attr("y1", 0)
+        .attr("x2", 5)
+        .attr("y2", 10)
+
+  nodeExit.select("g#horiz")
+        .attr("x1", 0)
+        .attr("y1", 5)  
+        .attr("x2", 10)
+        .attr("y2", 5)
 
   // Update the links…
   var link = svg.selectAll("path.link")
@@ -389,5 +469,56 @@ function update(source) {
 <div id="footer" class="footer">
   Much credit to <a href="https://d3js.org/">d3</a>. AND this collapsing tree is basically a fork of work by pbrockmann - <a href="https://gist.github.com/PBrockmann/0f22818096428b12ea23">CollapsibleTree Search</a> and once I learn to fork on git I'll do that...
 </div>
+
+<div id="myModal" class="modal">
+
+  <!-- Modal content -->
+  <div class="modal-content">
+    <span class="accept">&#10003;</span><span class="cancel">&times;</span>
+    <p>Add a child to <span id="pickedNodeName"></span> with name:</p>
+    <input type="text" id="childName" class="textentry">
+  </div>
+
+</div>
+<script>
+
+
+// =====================================================
+//  functions to manage the modal dialog.
+var modal = document.getElementById('myModal');
+
+var cancelButton = document.getElementsByClassName("cancel")[0];
+
+var acceptButton = document.getElementsByClassName("accept")[0];
+
+acceptButton.onclick = function() {
+  addChild(newParent, $("#childName").val());
+  modal.style.display = "none";
+  $("#childName").val("");
+}
+
+cancelButton.onclick = function() {
+    modal.style.display = "none";
+    newParent = null;
+}
+
+// catch enter and submit the form.
+
+$('#childName').keypress(function (e) {
+  if (e.which == 13) {
+    addChild(newParent, $("#childName").val());
+    modal.style.display = "none";
+    $("#childName").val("");
+    return false;    //<---- Add this line
+  }
+});
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+    if (event.target == modal) {
+        modal.style.display = "none";
+    }
+}
+</script>
 
 </body>
