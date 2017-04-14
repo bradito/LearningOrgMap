@@ -45,7 +45,7 @@ path.link {
   stroke-width: 1.5px;
 }
 
-.node g#plusSign {
+.node g.plusSign {
   cursor: pointer;
   stroke: #b6e6db;
   stroke-width: 2px;
@@ -181,4 +181,15 @@ ul.longList {
     color: #A80003;
     text-decoration: none;
     cursor: pointer;
+}
+
+#textbox {
+  clear:both;
+}
+
+textarea {
+  clear:both;
+  width: 80%;
+  font-style: sans-serif;
+  font-size: 8px;
 }

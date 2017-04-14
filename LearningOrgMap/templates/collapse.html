@@ -12,6 +12,8 @@
    <div id="searchName"></div>
    <button class="button" onclick="clearSearch()">Clear All</button>
    <button class="button" onclick="expandAllButton()">Expand All</button>
+   <button class="button" onclick="showAll()">Show All Detail</button>
+   <button class="button" onclick="hideAll()">Minimalist View</button>
 
    <div id="instructions">The above drop down list will find any node in the tree, searched alphabetically.</div>
 </div>
@@ -108,6 +110,67 @@ function expandAll(d) {
         d.children.forEach(expandAll);
 }
 
+
+//===============================================
+// gets children's names as a array
+// need to sort it.
+function childNames(showFoundMarks = false, showOnlyFound = false) {
+  expandAll(root);
+  var nameList = '';
+  var getText = function (d) {
+      var thisRow = ''
+      var thisRow =  thisRow.concat('\t'.repeat(d.depth));
+      if (showFoundMarks && (d.class === "found")) {
+        thisRow = thisRow.concat("[x] ");
+      } else if (showFoundMarks && (d.class !== "found")) {
+        thisRow = thisRow.concat("[ ] ");
+      } 
+      thisRow = thisRow.concat(d.name + '\n');
+      if(showOnlyFound && d.class === "found") {
+        nameList = nameList.concat(thisRow);
+      } else if (showOnlyFound === false) {
+        nameList = nameList.concat(thisRow);
+      }
+    if(d.children) d.children.forEach(getText);
+  }
+  getText(root);
+  return nameList;
+}
+
+var sorter = function(a, b) {
+  var nameA = a.name.toUpperCase(); // ignore upper and lowercase
+  var nameB = b.name.toUpperCase(); // ignore upper and lowercase
+   if (nameA < nameB) {
+     return -1;
+   }
+   if (nameA > nameB) {
+     return 1;
+   }
+   // names must be equal
+   return 0;
+}
+
+function sortTree(d) {
+  expandAll(d);
+  if (d.children) {
+    d.children.sort(sorter);
+    d.children.forEach(sortTree);
+  }
+}
+
+//===============================================
+//creates JSON  and loads into box
+function loadBoxWithJSON() {
+    expandAll(root);
+    $("#largeTextWorkspace").val(JSON.stringify(root,['name','children']));
+}
+
+//===============================================
+//creates tabbed text outline  and loads into box
+function loadBoxWithTabbedText(showFoundMarks = false, showOnlyFound = false) {
+    sortTree(root);
+    $("#largeTextWorkspace").val(childNames(showFoundMarks, showOnlyFound));
+}
 //===============================================
 // toggleChildren children on click.
 function toggleChildren(d) {
@@ -187,7 +250,7 @@ function clearSearch() {
 }
 
 function expandAllButton() {
-  expandAll(root);
+  sortTree(root);
   update(root);
 }
 
@@ -232,6 +295,7 @@ function addChild(d, newName) {
 function buildSelect2() {  
   select2Data = []; 
   select2DataCollectName(root); 
+  select2Data.sort(sorter);
 
   // a quick utility function to return the name of an item for select2 
   function format(item) {
@@ -282,6 +346,7 @@ d3.json("/data/{{ map }}", function(error, flare) {
     root = flare;
     root.x0 = height / 2; // puts in the middle of the screen rather than the top by dividing by half.
     root.y0 = 0; // puts root on the left most
+    sortTree(root);
     update(root);
 
     // create select2Data to hold the pick list, populated by the following function
@@ -300,7 +365,6 @@ d3.select(self.frameElement).style("height", "800px");
 
 // does the lifting of binding data to svg
 function update(source) {
-
   // Compute the new tree layout.
   var nodes = tree.nodes(root).reverse(),
       links = tree.links(nodes);
@@ -330,7 +394,7 @@ function update(source) {
       .on("click", toggleFound);
 
 var plusSign = nodeEnter.append("g")
-      .attr("id","plusSign")
+      .attr("class","plusSign")
       .on("click", addChildWindow)
       .attr("transform", "translate(23,-5)")
     
@@ -470,6 +534,15 @@ var plusSign = nodeEnter.append("g")
   Much credit to <a href="https://d3js.org/">d3</a>. AND this collapsing tree is basically a fork of work by pbrockmann - <a href="https://gist.github.com/PBrockmann/0f22818096428b12ea23">CollapsibleTree Search</a> and once I learn to fork on git I'll do that...
 </div>
 
+<div id="textbox">
+ <button class="button" onclick="loadBoxWithJSON()">Display Entire Tree as JSON</button>
+ <button class="button" onclick="loadBoxWithTabbedText(false)">Display Entire Tree as Text</button>
+ <button class="button" onclick="loadBoxWithTabbedText(true)">Display EntireTree as Text with found marks</button>
+ <button class="button" onclick="loadBoxWithTabbedText(false, true)">Display Only Found as Text </button>
+ <!-- <button class="button" onclick="">Load JSON from this box to Tree</button> -->
+ <textarea id="largeTextWorkspace"></textarea>
+</div>
+
 <div id="myModal" class="modal">
 
   <!-- Modal content -->
@@ -519,6 +592,20 @@ window.onclick = function(event) {
         modal.style.display = "none";
     }
 }
+
+
+function showAll() {
+  $(".plusSign").show();
+  $("text").show();
+  $("circle").show();
+}
+
+function hideAll()  {
+  $(".plusSign").hide();
+  $("text").hide();
+  $("circle").hide();
+}
+
 </script>
 
 </body>
