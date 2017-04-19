@@ -318,11 +318,15 @@ function buildSelect2() {
 //builds the SVG object
 var margin = {top: 20, right: 120, bottom: 20, left: 120},
     width = 1400 - margin.right - margin.left,
-    height = 800 - margin.top - margin.bottom;
+    height = 600 - margin.top - margin.bottom;
     
 var i = 0,
     duration = 750,
     root; // root object to hold all the data
+
+var zoom = d3.behavior.zoom()
+    .scaleExtent([1, 10])
+    .on("zoom", zoomed);
 
 var tree = d3.layout.tree() 
     // specifies a tree layout with the above height and width and stores as an object tree
@@ -339,8 +343,14 @@ var svg = d3.select("body").append("svg") /// builds the svg based on the above 
     .attr("height", height + margin.top + margin.bottom)
     .attr("class", "map")
   .append("g") //creates the base node I think.  <g> is effectively a group container for other elements.
-    .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+    .attr("transform", "translate(" + margin.left + "," + margin.top + ")")
+    .call(zoom)
+  .append("g");
 
+ svg.append("rect")
+        .attr("class", "overlay")
+        .attr("width", width)
+        .attr("height", height);
   // gets a request with a parsed JSON file and parses it with the included callback function
 d3.json("/data/{{ map }}", function(error, flare) { 
     root = flare;
@@ -529,6 +539,11 @@ var plusSign = nodeEnter.append("g")
   });
 }
 
+
+function zoomed() {
+  svg.attr("transform", "translate(" + d3.event.translate + ")scale(" + d3.event.scale + ")");
+}
+
 </script>
 <div id="footer" class="footer">
   Much credit to <a href="https://d3js.org/">d3</a>. AND this collapsing tree is basically a fork of work by pbrockmann - <a href="https://gist.github.com/PBrockmann/0f22818096428b12ea23">CollapsibleTree Search</a> and once I learn to fork on git I'll do that...
@@ -537,7 +552,7 @@ var plusSign = nodeEnter.append("g")
 <div id="textbox">
  <button class="button" onclick="loadBoxWithJSON()">Display Entire Tree as JSON</button>
  <button class="button" onclick="loadBoxWithTabbedText(false)">Display Entire Tree as Text</button>
- <button class="button" onclick="loadBoxWithTabbedText(true)">Display EntireTree as Text with found marks</button>
+ <button class="button" onclick="loadBoxWithTabbedText(true)">Display Entire Tree as Text with found marks</button>
  <button class="button" onclick="loadBoxWithTabbedText(false, true)">Display Only Found as Text </button>
  <!-- <button class="button" onclick="">Load JSON from this box to Tree</button> -->
  <textarea id="largeTextWorkspace"></textarea>
@@ -593,7 +608,7 @@ window.onclick = function(event) {
     }
 }
 
-
+  
 function showAll() {
   $(".plusSign").show();
   $("text").show();
