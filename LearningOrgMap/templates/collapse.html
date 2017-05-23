@@ -2,11 +2,17 @@
 <meta charset="utf-8">
 
 <body>
-<script src="http://cdnjs.cloudflare.com/ajax/libs/d3/3.4.13/d3.min.js"></script>
-<script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-<link rel="stylesheet" type="text/css" href="http://cdnjs.cloudflare.com/ajax/libs/select2/3.5.2/select2.min.css"></link>
-<link href="/css/interactive_tree.css" rel="stylesheet" type="text/css" />
-<script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/select2/3.5.2/select2.min.js"></script>
+<script src="js/d3.min.js"></script>
+<script src="js/jquery.min.js"></script>
+<script type="text/javascript" src="js/select2.min.js"></script>
+<script type="text/javascript" src="js/modal.js"></script>
+<!-- <script type="text/javascript" src="js/bootstrap.min.js"></script>
+<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css"></link>
+ -->
+ <link rel="stylesheet" type="text/css" href="css/select2.min.css"></link>
+<link href="css/interactive_tree.css" rel="stylesheet" type="text/css"></link>
+
+<div id="header">Learning Org Map - concept method of interacting with a broad set of knowledge elements on a single screen.</div>
 
 <div id="block_container">
    <div id="searchName"></div>
@@ -15,7 +21,7 @@
    <button class="button" onclick="showAll()">Show All Detail</button>
    <button class="button" onclick="hideAll()">Minimalist View</button>
 
-   <div id="instructions">The above drop down list will find any node in the tree, searched alphabetically.</div>
+   <div id="instructions">The above drop down list will find any node in the tree, searched alphabetically. The below map can be zoomed with up/down scroll wheel or two finger trackpad movement. It can be dragged around by clicking and dragging on any whitespace. A filled circle indicates a collapsed item with hidden children. The orange boxes can be toggled on and off to mark elements as 'found'. The green plus can be used to add a child to any element.  Added elements still must be marked 'found' if desired.</div>
 </div>
 
 <script>
@@ -114,11 +120,21 @@ function expandAll(d) {
 //===============================================
 // gets children's names as a array
 // need to sort it.
-function childNames(showFoundMarks = false, showOnlyFound = false) {
+function childNames(showFoundMarks, showOnlyFound) {
+  
+  if (showFoundMarks === undefined) {
+    showFoundMarks = false;
+  }
+
+  if (showOnlyFound === undefined) {
+    showOnlyFound = false;
+  }
+
   expandAll(root);
+
   var nameList = '';
   var getText = function (d) {
-      var thisRow = ''
+      var thisRow = '';
       var thisRow =  thisRow.concat('\t'.repeat(d.depth));
       if (showFoundMarks && (d.class === "found")) {
         thisRow = thisRow.concat("[x] ");
@@ -167,7 +183,16 @@ function loadBoxWithJSON() {
 
 //===============================================
 //creates tabbed text outline  and loads into box
-function loadBoxWithTabbedText(showFoundMarks = false, showOnlyFound = false) {
+function loadBoxWithTabbedText(showFoundMarks , showOnlyFound) {
+
+  if (showFoundMarks === undefined) {
+    showFoundMarks = false;
+  }
+
+  if (showOnlyFound === undefined) {
+    showOnlyFound = false;
+  }
+
     sortTree(root);
     $("#largeTextWorkspace").val(childNames(showFoundMarks, showOnlyFound));
 }
@@ -544,16 +569,18 @@ function zoomed() {
   svg.attr("transform", "translate(" + d3.event.translate + ")scale(" + d3.event.scale + ")");
 }
 
+
+
 </script>
 <div id="footer" class="footer">
   Much credit to <a href="https://d3js.org/">d3</a>. AND this collapsing tree is basically a fork of work by pbrockmann - <a href="https://gist.github.com/PBrockmann/0f22818096428b12ea23">CollapsibleTree Search</a> and once I learn to fork on git I'll do that...
 </div>
 
 <div id="textbox">
- <button class="button" onclick="loadBoxWithJSON()">Display Entire Tree as JSON</button>
  <button class="button" onclick="loadBoxWithTabbedText(false)">Display Entire Tree as Text</button>
  <button class="button" onclick="loadBoxWithTabbedText(true)">Display Entire Tree as Text with found marks</button>
  <button class="button" onclick="loadBoxWithTabbedText(false, true)">Display Only Found as Text </button>
+ <button class="button" onclick="loadBoxWithJSON()">Display Entire Tree as JSON</button>
  <!-- <button class="button" onclick="">Load JSON from this box to Tree</button> -->
  <textarea id="largeTextWorkspace"></textarea>
 </div>

@@ -104,10 +104,14 @@ ul.longList {
   display: inline;
 }
 
-#instructions {
+#instructions,
+#header {
   font: 10px sans-serif;
 }
 
+#header {
+  font-weight: bold;
+}
 
 /* The Modal (background) */
 .modal {
